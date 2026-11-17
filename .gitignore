@@ -1,0 +1,10 @@
+# Measurement output, screenshots and recordings stay local.
+runs/
+*.png
+*.mp4
+*.key
+secrets/
+__pycache__/
+.env
+# Per-machine agent tooling (set-core); not part of this repo.
+.set/
