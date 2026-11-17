@@ -1,0 +1,11 @@
+{
+  "fixtures": ["tests/fixtures/"],
+  "inventedBankPrefix": "999",
+  "forbiddenNames": [
+    ["\\.(dbf|fpt|cdx|dbc|mdb|accdb|sqlite|db)$", "a program's data file (profiles are UI-only, never the program's data)"],
+    ["\\.(xlsx|xls|pdf|zip|7z|rar)$", "an export or archive the text scan cannot read"],
+    ["\\.(mp4|mkv|mov|png|jpg|jpeg)$", "a screen recording or screenshot (it may show real data)"],
+    ["(^|/)secrets/", "the secrets folder"],
+    ["(^|/)\\.env$", "an environment file"]
+  ]
+}

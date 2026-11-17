@@ -1,0 +1,8 @@
+# The read-back of uj-jegyzet: the new note's text must be in the list.
+name: jegyzet-visszaolvas
+app: Jegyzet 1.0 (test fixture)
+map: tests/fixtures/profiles/jegyzet/maps/jegyzet.yaml
+vars: {szoveg: {}}
+steps:
+  - focus: "@window"
+  - expect: {label: "${szoveg}", role: ListItem}

@@ -1,0 +1,6 @@
+name: jegyzet-jegyzetek
+app: Jegyzet 1.0 (test fixture)
+map: tests/fixtures/profiles/jegyzet/maps/jegyzet.yaml
+steps:
+  - focus: "@window"
+  - expect: "@list"

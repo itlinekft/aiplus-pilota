@@ -1,0 +1,69 @@
+# The schema of a profile's manifest, profiles/<id>/profile.yaml. A small JSON Schema subset that
+# kit/load_profile.py checks itself (type, required, properties, additionalProperties, items, enum, const,
+# pattern), so the kit needs nothing beyond PyYAML.
+#
+# The safety block and the write rules are structural: a profile cannot switch them off, because each one is
+# a `const: true`, and the kit also checks the write tapes themselves (see docs/ARCHITECTURE.md).
+type: object
+required: [id, title, program, engine, tapes, safety]
+additionalProperties: false
+properties:
+  id: {type: string, pattern: "^[a-z0-9][a-z0-9-]*$"}
+  title: {type: string}
+  vendor:
+    type: object
+    required: [name, affiliation]
+    additionalProperties: false
+    properties:
+      name: {type: string}
+      affiliation: {enum: [none]}          # profiles describe programs we are not affiliated with
+  program:
+    type: object
+    required: [family, os]
+    additionalProperties: false
+    properties:
+      family: {type: string}
+      modules: {type: array, items: {type: string}}
+      versions_seen: {type: array, items: {type: string}}
+      os: {enum: [windows, macos]}
+  engine: {const: desktape}
+  maps:
+    type: object
+    additionalProperties: {type: string}
+  tapes:
+    type: object
+    required: [read]
+    additionalProperties: false
+    properties:
+      read:
+        type: object
+        additionalProperties: {type: string}
+      write:
+        type: object
+        additionalProperties:
+          type: object
+          required: [tape, backup, read_back]
+          additionalProperties: false
+          properties:
+            tape: {type: string}
+            backup: {const: true}
+            read_back: {const: true}
+  skills: {type: array, items: {type: string}}
+  views:
+    type: object
+    required: [source, read_only]
+    additionalProperties: false
+    properties:
+      source: {type: string}
+      read_only: {const: true}
+  limits: {type: object}
+  safety:
+    type: object
+    required: [own_words_only, ui_only, backup_before_write, read_back_every_write, fictitious_data_only]
+    additionalProperties: false
+    properties:
+      own_words_only: {const: true}
+      ui_only: {const: true}
+      backup_before_write: {const: true}
+      read_back_every_write: {const: true}
+      fictitious_data_only: {const: true}

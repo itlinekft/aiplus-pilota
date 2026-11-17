@@ -29,6 +29,13 @@ Made by ITLine. The profiles drive your own licensed program on your own machine
 ## Profiles
 
 Each profile lives under `profiles/<name>/`. Writing one follows [docs/profiles/README.md](docs/profiles/README.md).
+How the kit loads a profile and hands its tapes to desktape: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+
+```bash
+python3 kit/load_profile.py check                 # every profile against its schema and rules
+python3 -m unittest discover -s tests             # offline tests
+scripts/install-hooks.sh                          # the pre-commit real-data and profile checks
+```
 
 ## License
 

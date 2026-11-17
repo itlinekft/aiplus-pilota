@@ -1,0 +1,25 @@
+# A test-only profile: a made-up note program, so the kit's tests run without any real program or machine.
+id: jegyzet
+title: Jegyzet (teszt profil)
+vendor: {name: "Kitalált Szoftver Kft.", affiliation: none}
+program:
+  family: "Jegyzet"
+  modules: ["Jegyzet 1"]
+  versions_seen: ["1.0 (kitalált)"]
+  os: windows
+engine: desktape
+maps:
+  jegyzet: maps/jegyzet.yaml
+tapes:
+  read:
+    jegyzetek: tapes/read/jegyzetek.yaml
+  write:
+    uj-jegyzet: {tape: tapes/write/uj-jegyzet.yaml, backup: true, read_back: true}
+skills: [skills/jegyzet-iras]
+views: {source: views/, read_only: true}
+safety:
+  own_words_only: true
+  ui_only: true
+  backup_before_write: true
+  read_back_every_write: true
+  fictitious_data_only: true

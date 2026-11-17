@@ -1,0 +1,9 @@
+# Named selectors of the made-up note program (test fixture).
+elements:
+  window: {label: "Jegyzet", role: Window}
+  list: {label: "Jegyzetek", role: List}
+  new: {label: "Új jegyzet", role: Button}
+  text: {label: "Szöveg", role: Edit}
+  save: {label: "Mentés", role: Button}
+  backup: {label: "Biztonsági mentés", role: Button}
+ignore: ["@list"]

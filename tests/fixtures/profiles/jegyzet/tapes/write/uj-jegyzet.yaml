@@ -1,0 +1,11 @@
+name: jegyzet-uj-jegyzet
+app: Jegyzet 1.0 (test fixture)
+map: tests/fixtures/profiles/jegyzet/maps/jegyzet.yaml
+backup: {tape: tests/fixtures/profiles/jegyzet/tapes/write/mentes.yaml}
+read_back: {tape: tests/fixtures/profiles/jegyzet/tapes/read/visszaolvas.yaml}
+vars: {szoveg: {}}
+steps:
+  - focus: "@window"
+  - click: "@new"
+  - type: {text: "${szoveg}", into: "@text"}
+  - click: "@save"

@@ -1,0 +1,7 @@
+# The program's own backup, through its own button.
+name: jegyzet-mentes
+app: Jegyzet 1.0 (test fixture)
+map: tests/fixtures/profiles/jegyzet/maps/jegyzet.yaml
+steps:
+  - focus: "@window"
+  - click: "@backup"

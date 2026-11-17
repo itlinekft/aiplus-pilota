@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# aiplus-pilota pre-commit: the real-data gate, then every profile against its schema and rules.
+# Install with scripts/install-hooks.sh. Do not bypass with --no-verify: fix the finding.
+set -u
+root="$(git rev-parse --show-toplevel)"
+cd "$root" || exit 1
+echo "pre-commit: real-data check" >&2
+python3 kit/real_data.py --staged || { echo "pre-commit: real-data check failed (see above)" >&2; exit 1; }
+if command -v set-leakscan >/dev/null 2>&1; then
+  echo "pre-commit: leak scan" >&2
+  set-leakscan --staged || exit $?
+fi
+echo "pre-commit: profile check" >&2
+python3 kit/load_profile.py check || { echo "pre-commit: a profile breaks the rules (see above)" >&2; exit 1; }
