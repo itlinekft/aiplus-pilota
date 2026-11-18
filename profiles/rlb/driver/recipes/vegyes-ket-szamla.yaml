@@ -1,0 +1,53 @@
+# RLB Kettős könyvvitel 2 (demo), Vegyes napló: one two-account entry without ÁFA (a bank row: T <tartozik> /
+# K <kovetel>, e.g. a customer's payment T 384 / K 311, a payment to a supplier T 4541 / K 384, a bank fee).
+# Starts from the program's main screen (Gyorsmenü visible).
+name: rlb-vegyes-ket-szamla
+app: RLB Kettős könyvvitel 26.6.0 DEMO (Windows)
+vars:
+  datum: {}                              # YYYYMMDD
+  bizszam: {}
+  megj: {}
+  osszeg: {}                             # whole forints, digits only
+  tartozik: {}                           # the T account
+  kovetel: {}                            # the K account
+steps:
+  - focus: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]"
+  # Gyorsmenü: Könyvelés tab, then Vegyes
+  - key: {key: "", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true, at: [0.5, 296]}
+  - pause: 1
+  - key: {key: "", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true, at: [0.574, 394]}
+  - pause: 2
+  # header: the date field has focus on open; the date, then the voucher number and the note by click
+  - key: {key: "", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true, at: [0.38, 452]}
+  - pause: 1
+  - key: {key: "{HOME}${datum}", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true}
+  - pause: 1
+  - key: {key: "", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true, at: [0.531, 452]}
+  - pause: 1
+  - key: {key: "{HOME}{DEL 10}", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true}
+  - type: {text: "${bizszam}", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true}
+  - key: {key: "", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true, at: [0.578, 524]}
+  - pause: 1
+  - key: {key: "{HOME}{DEL 10}", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true}
+  - type: {text: "${megj}", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true}
+  - pause: 1.5
+  # the line, without ÁFA: the net amount's account is T, the gross amount's account K
+  - click: {label: "Új számlasor", role: Button}
+  - pause: 1.5
+  - key: {key: "", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true, at: [0.424, 620]}
+  - pause: 1
+  - key: {key: "${osszeg}{TAB}", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true}
+  - pause: 2
+  - key: {key: "", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true, at: [0.514, 620]}
+  - pause: 1
+  - key: {key: "{HOME}{DEL 10}${tartozik}{TAB}", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true}
+  - pause: 2
+  - key: {key: "", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true, at: [0.516, 682]}
+  - pause: 1
+  - key: {key: "{HOME}{DEL 10}${kovetel}{TAB}", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true}
+  - pause: 2
+  - click: {label: "Mentés", role: Button}
+  - pause: 1.5
+  - click: {label: "Tétel mentése / Új tétel", role: Button}
+  - pause: 1.5
+  - click: {label: "Cmdkilep1", role: Button}

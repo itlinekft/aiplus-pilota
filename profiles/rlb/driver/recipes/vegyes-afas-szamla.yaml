@@ -1,0 +1,56 @@
+# RLB Kettős könyvvitel 2 (demo), Vegyes napló: one incoming invoice with 27 % ÁFA, without partner analytics
+# (fallback b: the demo blocks new partners, and the Szállító napló requires one).
+#   T <koltseg> net, T 466 ÁFA / K <szallito> gross; the supplier goes in the entry text.
+# Starts from the program's main screen (Gyorsmenü visible). Measured on the Windows 11 test VM, 2026-11-17 01:2x (V/000001).
+name: rlb-vegyes-afas-szamla
+app: RLB Kettős könyvvitel 26.6.0 DEMO (Windows)
+vars:
+  datum: {default: "20261112"}           # számla kelte, YYYYMMDD (the field takes digits over its mask)
+  bizszam: {}
+  megj: {}                               # "<szállító> szállítói számla, <tárgy>"
+  netto: {}                              # whole forints, digits only
+  koltseg: {default: "511"}              # the T account of the net amount
+  szallito: {default: "4541"}            # the K account of the gross amount
+steps:
+  - focus: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]"
+  # Gyorsmenü: Könyvelés tab, then Vegyes
+  - key: {key: "", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true, at: [0.5, 296]}
+  - pause: 1
+  - key: {key: "", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true, at: [0.574, 394]}
+  - pause: 2
+  # header: the date field has focus on open; the date, then the voucher number and the note by click
+  - key: {key: "", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true, at: [0.38, 452]}
+  - pause: 1
+  - key: {key: "{HOME}${datum}", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true}
+  - pause: 1
+  - key: {key: "", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true, at: [0.531, 452]}
+  - pause: 1
+  - key: {key: "{HOME}{DEL 10}", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true}
+  - type: {text: "${bizszam}", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true}
+  - key: {key: "", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true, at: [0.578, 524]}
+  - pause: 1
+  - key: {key: "{HOME}{DEL 10}", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true}
+  - type: {text: "${megj}", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true}
+  - pause: 1.5
+  # the line: ÁFA 27 % comes by default once "ÁFÁ-s tétel" is ticked (bev.sor 66)
+  - click: {label: "Új számlasor", role: Button}
+  - pause: 1.5
+  - click: {label: "ÁFÁ-s tétel", role: CheckBox}
+  - pause: 1.5
+  - key: {key: "", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true, at: [0.424, 620]}
+  - pause: 1
+  - key: {key: "${netto}{TAB}", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true}
+  - pause: 2
+  - key: {key: "", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true, at: [0.514, 620]}
+  - pause: 1
+  - key: {key: "{HOME}{DEL 10}${koltseg}{TAB}", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true}
+  - pause: 2
+  - key: {key: "", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true, at: [0.516, 682]}
+  - pause: 1
+  - key: {key: "{HOME}{DEL 10}${szallito}{TAB}", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true}
+  - pause: 2
+  - click: {label: "Mentés", role: Button}
+  - pause: 1.5
+  - click: {label: "Tétel mentése / Új tétel", role: Button}
+  - pause: 1.5
+  - click: {label: "Cmdkilep1", role: Button}

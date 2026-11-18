@@ -1,0 +1,27 @@
+# The RLB profile: Kettős könyvvitel, Bérszámfejtés and Számlázás, operated through their own windows.
+# Measured on the programs' DEMO versions with fictitious data only (see README.md, "Demo limits").
+id: rlb
+title: RLB könyvelőprogramok (Kettős könyvvitel, Bérszámfejtés, Számlázás)
+vendor: {name: "RLB-60 Bt.", affiliation: none}
+program:
+  family: "RLB"
+  modules: ["Kettős könyvvitel 2", "Bérszámfejtés", "Számlázás és készletnyilvántartás 2"]
+  versions_seen: ["Kettős könyvvitel 26.6.0 DEMO", "Bérszámfejtés 26.12.0 DEMO", "Számlázás 2 9.91 DEMO"]
+  os: windows
+engine: desktape
+# Kit-runnable tapes come with two desktape engine additions (no settle read between steps; click points relative
+# to the program's centred form). Until then the driver scripts in driver/ play the recipes in driver/recipes/ and
+# read every write back themselves, so the kit has no tape to run yet.
+tapes:
+  read: {}
+skills: [skills/rlb-konyveles, skills/rlb-nezet]
+limits:
+  kettos: "demo: at most 30 entries per client; new partners cannot be added"
+  ber: "demo: only January-March can be computed; only the built-in sample client"
+  szamlazas: "demo: the issuer is locked to DEMO FELHASZNÁLÓ; new partners and items cannot be added"
+safety:
+  own_words_only: true
+  ui_only: true
+  backup_before_write: true
+  read_back_every_write: true
+  fictitious_data_only: true

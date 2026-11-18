@@ -1,0 +1,73 @@
+# RLB Kettős könyvvitel 2 (demo), Vegyes napló: one outgoing (vevő) invoice with 27 % ÁFA, no partner analytics.
+#   T 311 gross / K <arbevetel> net, K 467 ÁFA (bevallási sor 07); the customer and due date go in the entry text.
+# Never Backspace past a field's start: FoxPro then jumps to the PREVIOUS field and erases it (measured).
+# Starts from the program's main screen. Measured on the Windows 11 test VM, 2026-11-17 01:4x (V/000004, Alfa Minta Kft.).
+# The order matters: flip the net row to K first, then pick bevallási sor 07, then the amounts and accounts.
+name: rlb-vegyes-vevo-szamla
+app: RLB Kettős könyvvitel 26.6.0 DEMO (Windows)
+vars:
+  datum: {}                              # számla kelte, YYYYMMDD
+  bizszam: {}
+  megj: {}                               # "<vevő> vevő, esed. MM.DD"
+  netto: {}
+  arbevetel: {default: "911"}
+steps:
+  - focus: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]"
+  - key: {key: "", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true, at: [0.5, 296]}
+  - pause: 1
+  - key: {key: "", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true, at: [0.574, 394]}
+  - pause: 2
+  - key: {key: "", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true, at: [0.38, 452]}
+  - pause: 1
+  - key: {key: "{HOME}${datum}", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true}
+  - pause: 1
+  - key: {key: "", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true, at: [0.531, 452]}
+  - pause: 1
+  - key: {key: "{HOME}{DEL 10}", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true}
+  - type: {text: "${bizszam}", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true}
+  - key: {key: "", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true, at: [0.578, 524]}
+  - pause: 1
+  - key: {key: "{HOME}{DEL 10}", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true}
+  - type: {text: "${megj}", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true}
+  - pause: 1.5
+  - click: {label: "Új számlasor", role: Button}
+  - pause: 1.5
+  - click: {label: "ÁFÁ-s tétel", role: CheckBox}
+  - pause: 1.5
+  # the net row's T/K box: K (the ÁFA row follows to K, the gross row to T)
+  - key: {key: "", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true, at: [0.541, 620]}
+  - pause: 1
+  - key: {key: "K", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true}
+  - key: {key: "{TAB}", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true}
+  - pause: 2
+  # bevallási sor 07 from its picker (search by number, then Kiválaszt)
+  - key: {key: "", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true, at: [0.622, 558]}
+  - pause: 1.5
+  - key: {key: "", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true, at: [0.156, 174], anchor: left}
+  - pause: 1
+  - key: {key: "{HOME}{DEL 10}07", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true}
+  - pause: 1
+  - key: {key: "", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true, at: [0.127, 516], anchor: left}
+  - pause: 1.5
+  # amounts and accounts, each field clicked first, its keys in a call of their own
+  - key: {key: "", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true, at: [0.424, 620]}
+  - pause: 1
+  - key: {key: "${netto}{TAB}", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true}
+  - pause: 2
+  - key: {key: "", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true, at: [0.514, 620]}
+  - pause: 1
+  - key: {key: "{HOME}{DEL 10}${arbevetel}{TAB}", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true}
+  - pause: 2
+  - key: {key: "", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true, at: [0.516, 644]}
+  - pause: 3   # measured 2026-11-17: the program fills its 466 default about 2 s after the field gets focus
+  - key: {key: "{END}+{HOME}467{TAB}", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true}
+  - pause: 2
+  - key: {key: "", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true, at: [0.516, 682]}
+  - pause: 1
+  - key: {key: "{HOME}{DEL 10}311{TAB}", into: "Kettős könyvvitel (hálózatos) 26.6.0 [DEMO VERZIÓ]", os: true}
+  - pause: 2
+  - click: {label: "Mentés", role: Button}
+  - pause: 1.5
+  - click: {label: "Tétel mentése / Új tétel", role: Button}
+  - pause: 1.5
+  - click: {label: "Cmdkilep1", role: Button}
