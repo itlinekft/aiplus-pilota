@@ -121,5 +121,6 @@ so and stop: do not add partners or items.
 
 ## Not wired yet
 
-The program's own ÁFA analitika is not wired: for an ÁFA check, compare the kivonat's 466/467 balances with the ÁFA
-of the booked invoices, and say that the program's own ÁFA analitika was not run.
+The program's own ÁFA-analitika screen is readable (its lists expose their values, see `docs/coverage-map.md`), but
+there is no driver command for it yet. Until there is, for an ÁFA check compare the kivonat's 466/467 balances with
+the ÁFA of the booked invoices, and say that the program's own ÁFA-analitika was not read.

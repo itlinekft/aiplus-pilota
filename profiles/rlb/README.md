@@ -32,6 +32,7 @@ product of RLB-60 Bt. and is not affiliated with RLB-60 Bt.** The name "RLB" onl
 | `driver/recipes/` | the Vegyes napló write recipes (desktape tape format) that `rlbkit.py` plays |
 | `skills/rlb-konyveles/` | the Claude skill for the bookkeeping, payroll and invoicing work |
 | `skills/rlb-nezet/` | the Claude skill for the views beside the chat |
+| `docs/coverage-map.md` | every screen surveyed in the three programs: what it shows, read / write status, demo limits |
 | `testdata/make.py` | makes the fictitious test documents (three supplier invoices, a bank statement, an attendance sheet) |
 
 ## Running it
